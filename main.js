@@ -1,3 +1,4 @@
+const fs = require("fs")
 const Challonge = require('challonge');
 const Discord = require('discord.js');
 const CONFIG = require("./config.json")
