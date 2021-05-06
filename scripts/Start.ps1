@@ -21,7 +21,7 @@ try {
 }
 Write-Host "[INFO] " -ForegroundColor Yellow -NoNewline; Write-Host "Starting bot with pm2...";
 pm2 start "$PSScriptHome/src/main.js" -f -l "$PSScriptHome/logs/log.log" -e "$PSScriptHome/logs/error.log" 2>&1 | Set-Variable err;
-if($err -join "`n" -match "stopped|errored")
+if($err -join "\r?\n" -match "stopped|errored")
 {
 	pm2 stop "main" -f 2>&1 >$null; 
 	pm2 delete "main" -f 2>&1 >$null;
