@@ -1,6 +1,6 @@
 $PSScriptHome = [System.IO.FileInfo]::new($PSScriptRoot).Directory.FullName
 Set-Location $PSScriptRoot
-.\stahpplease.ps1
+Powershell.exe -ExecutionPolicy Bypass -File .\Stop.ps1
 Set-Location $PSScriptHome
 Write-Host "[INFO] " -ForegroundColor Yellow -NoNewline; Write-Host "Dumping logs...";
 try {
@@ -23,9 +23,6 @@ if (Test-Path .\node_modules\ -PathType Container)
 		$pass = "node modules"
 		Remove-Item '.\node_modules' -Recurse -Force
 		Write-Host "[SUCCESS] " -ForegroundColor Green -NoNewline; Write-Host "Node modules have been deleted!";
-		$pass = "package-lock"
-		Remove-Item '.\package-lock.json' -Force
-		Write-Host "[SUCCESS] " -ForegroundColor Green -NoNewline; Write-Host "Package-lock has been deleted!";
 	} catch {
 		Write-Host "[ERR!] " -ForegroundColor Red -NoNewline; Write-Host "Could not delete $pass because: $($_.Exception.Message)"
 	}
