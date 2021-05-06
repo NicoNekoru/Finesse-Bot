@@ -1,7 +1,7 @@
 const fs = require("fs")
 const Challonge = require('challonge');
 const Discord = require('discord.js');
-const CONFIG = require("./config.json")
+const CONFIG = require("../config.json")
 const Client = new Discord.Client()
 const CClient = Challonge.createClient(CONFIG.challonge)
 Client.login(CONFIG.discord.token)

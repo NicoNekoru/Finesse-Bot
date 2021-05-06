@@ -1,16 +1,21 @@
 {
-  "name": "finesse-bot",
-  "version": "1.0.0",
-  "description": "",
-  "main": "main.js",
-  "scripts": {
-    "test": "node test.js",
-    "start": "node main.js"
-  },
-  "author": "",
-  "license": "ISC",
-  "dependencies": {
-    "challonge": "^2.2.0",
-    "discord.js": "^12.5.3"
-  }
+	"name": "finesse-bot",
+	"version": "1.0.0",
+	"description": "",
+	"main": "main.js",
+	"scripts": {
+		"start": "powershell -ExecutionPolicy Bypass -File ./scripts/startNOW.ps1",
+		"stop": "powershell -ExecutionPolicy Bypass -File ./scripts/stahpplease.ps1",
+		"status": "pm2 status main",
+		"build": "powershell -ExecutionPolicy Bypass -File ./scripts/WECANBUILDIT.ps1",
+		"fix": "powershell -ExecutionPolicy Bypass -File ./scripts/sumtingbork.ps1",
+		"reset": "powershell -ExecutionPolicy Bypass -File ./scripts/reducedtoatoms.ps1",
+		"test": "node ./test/test.js"
+	},
+	"author": "",
+	"license": "ISC",
+	"dependencies": {
+		"challonge": "^2.2.0",
+		"discord.js": "^12.5.3"
+	}
 }

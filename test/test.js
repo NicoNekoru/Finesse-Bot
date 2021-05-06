@@ -1,10 +1,10 @@
 const fs = require("fs")
 const Challonge = require('challonge');
 const Discord = require('discord.js');
-const CONFIG = require("./config.json")
+const CONFIG = require("../config.json")
 const Client = new Discord.Client()
 const CClient = Challonge.createClient(CONFIG.challonge)
-require("./events/message")({
+require("../src/events/message")({
     channel: {
         type: 'text',
     },
