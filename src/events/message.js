@@ -4,7 +4,7 @@ module.exports = async message => {
 	const client = message.client
 	if(message.channel.type === "dm" || message.author.bot) return;
 	let prefix = auth.prefix || "nysdey is very cool "; 
-	if(new RegExp(`^<@!?${client.user.id}>`, 'i').test(message.content)) return message.reply(`My current prefix is ${prefix}`)
+	if(new RegExp(`^<@!?${client.user.id}>`, 'i').test(message.content)) return message.reply(`My current prefix is \`${prefix}\``)
 	if (!message.content.startsWith(prefix)) return;
 
 	let command = message.content.split(prefix)[1].split(' ')[0];

@@ -5,7 +5,7 @@ class Command
 	{
 		this.name = options.name
 		this.aliases = options.aliases
-		this.description
+		this.description = options.description
 		this.permissionLevel = options.permissionLevel
 		this.run = options.run
 		this.Discord = Discord
@@ -22,6 +22,16 @@ class Command
 			"MANAGE_GUILD" : 10,
 			"ADMINISTRATOR" : 11
 		}
-		message.member.hasPermission("BAN_MEMBERS")
+		client.api.applications(client.user.id).commands.post({data: {
+			name: this.name,
+			description: this.description
+		}})
+	}
+
+	checkPermissions(message)
+	{
+		Object.keys(this.permissionLevels).map(perm=>{
+			message.member.hasPermission(perm)
+		}).filter(Boolean).length
 	}
 }
