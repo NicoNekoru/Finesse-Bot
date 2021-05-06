@@ -19,5 +19,4 @@ exports.help = {
 	name: 'ping',
 	aliases: [],
 	description: 'Pings the bot.',
-	usage: 'nut!ping'
 }
