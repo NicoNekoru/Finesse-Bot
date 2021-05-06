@@ -20,7 +20,7 @@ try {
 	Write-Host "[ERR!] " -ForegroundColor Red -NoNewline; Write-Host "Could not empty error.log because: $($_.Exception.Message)"
 }
 Write-Host "[INFO] " -ForegroundColor Yellow -NoNewline; Write-Host "Starting bot with pm2...";
-pm2 start "$PSScriptHome/src/main.js" -f -l "$PSScriptHome/logs/log.log" -e "$PSScriptHome/logs/error.log" 2>&1 | Set-Variable err;
+pm2 start "$PSScriptHome/src/main.js" -f -l "$PSScriptHome/logs/log.log" -e "$PSScriptHome/logs/error.log" --max-restarts 10 2>&1 | Set-Variable err;
 if($err -join "\r?\n" -match "stopped|errored")
 {
 	pm2 stop "main" -f 2>&1 >$null; 
