@@ -29,10 +29,10 @@ require("../src/events/message")({
 Client.commands = new Map();
 Client.aliases = new Map();
 Client.queue = new Map();
-fs.readdirSync('./commands/').forEach((files) => {
+fs.readdirSync('../src/commands/').forEach((files) => {
     if (err) console.error(err);
     files.forEach(f => {
-        let props = require(`./commands/${f}`);
+        let props = require(`../src/commands/${f}`);
         Client.commands.set(props.help.name, props);
         props.help.aliases.forEach(alias => {
             Client.aliases.set(alias, props.help.name);

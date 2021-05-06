@@ -1,7 +1,8 @@
 const fs = require("fs")
+const path = require("path")
 const Challonge = require('challonge');
 const Discord = require('discord.js');
-const CONFIG = require("../config.json")
+const CONFIG = require("./config.json")
 const Client = new Discord.Client()
 const CClient = Challonge.createClient(CONFIG.challonge)
 Client.login(CONFIG.discord.token)
@@ -9,7 +10,7 @@ require(`./eventloader.js`)(Client, CClient)
 Client.commands = new Map();
 Client.aliases = new Map();
 Client.queue = new Map();
-fs.readdir('./commands/', (err, files) => {
+fs.readdir(path.resolve('./src/commands/'), (err, files) => {
 	if (err) console.error(err);
 	files.forEach(f => {
 		let props = require(`./commands/${f}`);

@@ -4,13 +4,13 @@
 	"description": "",
 	"main": "main.js",
 	"scripts": {
-		"start": "powershell -ExecutionPolicy Bypass -File ./scripts/startNOW.ps1",
-		"stop": "powershell -ExecutionPolicy Bypass -File ./scripts/stahpplease.ps1",
+		"start": "powershell -ExecutionPolicy Bypass -File './scripts/Start.ps1'",
+		"stop": "powershell -ExecutionPolicy Bypass -File './scripts/Stop.ps1'",
 		"status": "pm2 status main",
-		"build": "powershell -ExecutionPolicy Bypass -File ./scripts/WECANBUILDIT.ps1",
-		"fix": "powershell -ExecutionPolicy Bypass -File ./scripts/sumtingbork.ps1",
-		"reset": "powershell -ExecutionPolicy Bypass -File ./scripts/reducedtoatoms.ps1",
-		"test": "node ./test/test.js"
+		"build": "powershell -ExecutionPolicy Bypass -File './scripts/Build.ps1'",
+		"fix": "powershell -ExecutionPolicy Bypass -File './scripts/Fix.ps1'",
+		"reset": "powershell -ExecutionPolicy Bypass -File './scripts/Reset.ps1'",
+		"test": "node './test/test.js'"
 	},
 	"author": "",
 	"license": "ISC",

@@ -1,6 +1,6 @@
 $PSScriptHome = [System.IO.FileInfo]::new($PSScriptRoot).Directory.FullName;
 Set-Location $PSScriptRoot
-Powershell.exe -ExecutionPolicy Bypass -File .\stahpplease.ps1
+Powershell.exe -ExecutionPolicy Bypass -File .\Stop.ps1
 Set-Location $PSScriptHome;
 Write-Host "[INFO] " -ForegroundColor Yellow -NoNewline; Write-Host "Saving last log in lastrun.log...";
 Copy-Item "$PSScriptHome\logs\log.log" "$PSScriptHome\logs\lastrun.log" -ErrorVariable err; 
