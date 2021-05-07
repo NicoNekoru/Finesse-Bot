@@ -10,34 +10,16 @@ require(`./eventloader.js`)(Client, CClient)
 Client.commands = new Map();
 Client.aliases = new Map();
 Client.queue = new Map();
+Client.CClient = CClient
 fs.readdir(path.resolve('./src/commands/'), (err, files) => {
 	if (err) console.error(err);
 	files.forEach(f => {
-		let props = require(`./commands/${f}`);
-		Client.commands.set(props.help.name, props);
-		props.help.aliases.forEach(alias => {
-			Client.aliases.set(alias, props.help.name);
+		let command = require(`./commands/${f}`);
+		let props = new command(Client, CClient)
+		Client.commands.set(props.name, props);
+		(props.aliases || ['']).forEach(alias => {
+			Client.aliases.set(alias, props.name);
 		});
-		console.log(`${props.help.name} loaded at ${new Date()}`)
+		console.log(`${props.name} loaded at ${new Date()}`)
 	});
 });
-
-Client.reload = (Client, command) => {
-	return new Promise((resolve, reject) => {
-		try {
-			delete require.cache[require.resolve(`./commands/${command}`)];
-			let cmd = require(`./commands/${command}`);
-			Client.commands.delete(command);
-			Client.aliases.forEach((cmd, alias) => {
-				if (cmd === command) Client.aliases.delete(alias);
-			});
-			Client.commands.set(command, cmd);
-			cmd.help.aliases.forEach(alias => {
-				Client.aliases.set(alias, cmd.help.name);
-			});
-			resolve();
-		} catch (e) {
-			reject(e);
-		}
-	});
-};
