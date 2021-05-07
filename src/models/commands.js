@@ -9,6 +9,7 @@ class Command
 		this.aliases = options.aliases || ['']
 		this.description = options.description
 		this.requesite = options.requesite || 0
+		this.usage = options.usage || `${this.name}`
 		this.Discord = Discord
         this.Challonge = Challonge
 		this.permissionLevels = {
