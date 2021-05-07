@@ -9,7 +9,6 @@ module.exports = class ping extends Command
 		})
 	}
 	async run(message) {
-		const client = message.client
 		const embed = new this.Discord.MessageEmbed();
 		embed.setTitle('**Pinging...**');
 		embed.setColor(0xff0000);
@@ -17,7 +16,7 @@ module.exports = class ping extends Command
 		embed.setColor(0xF8FF16);
 		embed.setTitle('Pong! :ping_pong:');
 		embed.setDescription(
-			`:heartbeat: ${client.ws.ping}ms\n` +
+			`:heartbeat: ${this.client.ws.ping}ms\n` +
 			`:stopwatch: ${sent.createdTimestamp - message.createdTimestamp}ms`
 		);
 		embed.setAuthor(message.author.tag, message.author.displayAvatarURL());
