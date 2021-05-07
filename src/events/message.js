@@ -8,8 +8,7 @@ module.exports = async message => {
 	if (!message.content.startsWith(prefix)) return;
 
 	let command = message.content.split(prefix)[1].split(' ')[0];
-	let args = message.content.split(" ");
-	let isMod = message.member.hasPermission("ADMINISTRATOR");
+	let args = message.content.replace(new RegExp(`^${prefix}`),"").split(" ").slice(1);
 	if (client.commands.has(command)) 
 	{
 		cmd = client.commands.get(command)

@@ -13,7 +13,7 @@ Client.queue = new Map();
 Client.CClient = CClient
 fs.readdir(path.resolve('./src/commands/'), (err, files) => {
 	if (err) console.error(err);
-	files.forEach(f => {
+	files.filter(h => !h.startsWith("in-pro")).forEach(f => {
 		let command = require(`./commands/${f}`);
 		let props = new command(Client, CClient)
 		Client.commands.set(props.name, props);
