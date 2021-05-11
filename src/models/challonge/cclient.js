@@ -1,33 +1,57 @@
 const https = require("https")
 class Challonge 
 {
-	constructor(username, apiKey)
+	constructor(auth, api_key)
 	{
+		let {username, apiKey} = this.constructorOverload(auth, api_key) || auth
 		this.username = username
 		this.apiKey = apiKey
+		this.auth = `${username}:${apiKey}`
 		this.host = "api.challonge.com"
-		this.href = `https://${username}@${apiKey}.${this.host}`
-		this.https = https
+		this.href = `https://${username}:${apiKey}@${this.host}`
 	}
-	
-	get(path)
+	constructorOverload(username, apiKey)
 	{
-		let url = `${this.href}/${path}`
-		return new Promise(https.get(
-			new URL(url), (res) => {
-				console.log('statusCode:', res.statusCode);
-				console.log('headers:', res.headers); 
+		let auth = null
+		if (apiKey) 
+		{
+			auth = {
+				username : username,
+				apiKey : apiKey
+			}
+		}
+		return auth
+	}
+
+	request(path, method, postData)
+	{
+		return new Promise((resolve, reject) =>{
+			let req = https.request(this.options(method, path), (res) => {
 				let data = "" 
 				res.on('data', (d) => {
 					data += d
 				});  
-				res.on('end', (e) => {
+				res.on('end', () => {
 					resolve(JSON.parse(data))
-				})
-			}).on('error', (e) => {
-				reject(e)
+				});
 			})
+			postData ? req.write(postData) : null
+			req.end()
+			req.on('error', (e) => {
+				reject(e)
+			})}
+
 		)
+	}
+
+	options(method, path)
+	{
+		return {
+			host:this.host,
+			auth: this.auth,
+			method: method,
+			path: path
+		}
 	}
 }
 
