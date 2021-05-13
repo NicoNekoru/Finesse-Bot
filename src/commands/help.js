@@ -37,6 +37,7 @@ module.exports = class help extends Command
 			embed.setDescription(
 				`Aliases: ${help.aliases.join(", ")}\n`+
 				`Usage: ${help.usage}\n`+
+				`Permission level: ${help.requesite}`
 				`${help.description}`
 			)
 			return message.channel.send(embed);

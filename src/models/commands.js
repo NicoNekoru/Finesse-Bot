@@ -1,5 +1,5 @@
 const Discord = require("discord.js")
-const Challonge = require("challonge")
+const Challonge = require("../models/challonge/cclient")
 class Command 
 {
 
@@ -37,8 +37,8 @@ class Command
 	static checkPermissions(message)
 	{
 		return Math.max(Object.keys(this.permissionLevels).map(perm=>{
-			message.member.hasPermission(perm) && this.permissionLevels[perm]
-		}))
+			return message.member.hasPermission(perm) && this.permissionLevels[perm]
+		})) || 0
 	}
 
 	run(message, args)

@@ -1,5 +1,5 @@
 const auth = require("../config.json");
-const Discord = require("discord.js")
+const Command = require("../models/commands")
 module.exports = async message => {
 	const client = message.client
 	if(message.channel.type === "dm" || message.author.bot) return;
@@ -9,14 +9,8 @@ module.exports = async message => {
 
 	let command = message.content.split(prefix)[1].split(' ')[0];
 	let args = message.content.replace(new RegExp(`^${prefix}`),"").split(" ").slice(1);
-	if (client.commands.has(command)) 
-	{
-		cmd = client.commands.get(command)
-		await cmd.run(message,args)
-	} 
-	else if (client.aliases.has(command)) 
-	{
-		cmd = client.commands.get(client.aliases.get(command));
-		await cmd.run(message,args)
-	}
+	if (client.commands.has(command)) cmd = client.commands.get(command);
+	else if (client.aliases.has(command)) cmd = client.commands.get(client.aliases.get(command));
+	if (Command.checkPermissions(message) < cmd.requesite) return
+	await cmd.run()
 }
