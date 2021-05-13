@@ -1,9 +1,9 @@
 {
-    "challonge" : {
-        "apikey" : "Challong api key"
-    },
-    "discord" : {
-        "token":"Discord auth token"
-    },
-    "prefix" : "nysdey is cool "
+	"challonge" : {
+		"apikey" : "Challong api key"
+	},
+	"discord" : {
+		"token":"Discord auth token"
+	},
+	"prefix" : "nysdey is cool "
 }

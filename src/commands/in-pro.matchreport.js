@@ -6,8 +6,8 @@ module.exports = class matchReport extends Command
 		super(client, cclient, {
 			name : '', //matchreport, not ready yet
 			description : 'use this for reporting matches in ift',
-            aliases : ["mr"],
-            usage : "matchreport [round] [yourScore-opponentScore] @[opponent]"
+			aliases : ["mr"],
+			usage : "matchreport [round] [yourScore-opponentScore] @[opponent]"
 		})
 	}
 	async run(message, args) {

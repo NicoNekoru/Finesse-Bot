@@ -11,7 +11,7 @@ class Command
 		this.requesite = options.requesite || 0
 		this.usage = options.usage || `${this.name}`
 		this.Discord = Discord
-        this.Challonge = Challonge
+		this.Challonge = Challonge
 		this.permissionLevels = {
 			"MANAGE_ROLES" : 1,
 			"MOVE_MEMBERS" : 2,
@@ -25,13 +25,13 @@ class Command
 			"MANAGE_GUILD" : 10,
 			"ADMINISTRATOR" : 11
 		}
-        this.client = client
-        this.cclient = cclient
+		this.client = client
+		this.cclient = cclient
 		// client.api.applications(client.user.id).commands.post({data: {
 		// 	name: this.name,
 		// 	description: this.description
 		// }})
-        // coming soon maybe
+		// coming soon maybe
 	}
 
 	static checkPermissions(message)
@@ -39,7 +39,7 @@ class Command
 		return Math.max(Object.keys(this.permissionLevels).map(perm=>{
 			message.member.hasPermission(perm) && this.permissionLevels[perm]
 		}))
-    }
+	}
 
 	run(message, args)
 	{
