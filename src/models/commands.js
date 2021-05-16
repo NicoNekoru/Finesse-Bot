@@ -2,7 +2,6 @@ const Discord = require("discord.js")
 const Challonge = require("../models/challonge/cclient")
 class Command 
 {
-
 	constructor(client, cclient, options)
 	{
 		this.name = options.name
@@ -12,7 +11,18 @@ class Command
 		this.usage = options.usage || `${this.name}`
 		this.Discord = Discord
 		this.Challonge = Challonge
-		this.permissionLevels = {
+		this.client = client
+		this.cclient = cclient
+		// client.api.applications(client.user.id).commands.post({data: {
+		// 	name: this.name,
+		// 	description: this.description
+		// }})
+		// coming soon maybe
+	}
+
+	static checkPermissions(message)
+	{
+		let permissionLevels = {
 			"MANAGE_ROLES" : 1,
 			"MOVE_MEMBERS" : 2,
 			"MUTE_MEMBERS" : 3,
@@ -25,19 +35,8 @@ class Command
 			"MANAGE_GUILD" : 10,
 			"ADMINISTRATOR" : 11
 		}
-		this.client = client
-		this.cclient = cclient
-		// client.api.applications(client.user.id).commands.post({data: {
-		// 	name: this.name,
-		// 	description: this.description
-		// }})
-		// coming soon maybe
-	}
-
-	static checkPermissions(message)
-	{
-		return Math.max(Object.keys(this.permissionLevels).map(perm=>{
-			return message.member.hasPermission(perm) && this.permissionLevels[perm]
+		return Math.max(Object.keys(permissionLevels).map(perm=>{
+			return message.member.hasPermission(perm) && permissionLevels[perm]
 		})) || 0
 	}
 

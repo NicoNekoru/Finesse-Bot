@@ -5,7 +5,7 @@ module.exports = class matchReport extends Command
 	{
 		super(client, cclient, {
 			name : 'matchreportoverride',
-			description : 'use this for override matche reports in ift',
+			description : 'use this for overriding match reports in ift',
 			aliases : ["mro"],
 			usage : "matchreportoverride [round] [yourScore-opponentScore] @[opponent]",
 			requesite : 10

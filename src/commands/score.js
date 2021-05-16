@@ -12,8 +12,6 @@ module.exports = class matchReport extends Command
 	}
 	async run(message, args) {
 		args = args.join("")
-		if (!message.client.betting) return message.reply("betting isn't open yet!")
-
 		const userList = require("../models/competitors.json")
 		const authorChallonge = userList[message.author.id].challongeInfo.id
 		if (!authorChallonge) return message.reply("you don't have a score if you didn't compete!")

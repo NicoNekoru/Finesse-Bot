@@ -27,7 +27,7 @@ module.exports = class help extends Command
 			embed.setFooter("For more information on a single command use help [command name]");
 			return message.channel.send(embed);
 		}
-		else if (this.client.commands.get(args[0]))
+		else if (this.client.commands.get(args[0].toLowerCase()))
 		{
 			let help = this.client.commands.get(args[0].toLowerCase())
 			const embed = new this.Discord.MessageEmbed();
@@ -37,14 +37,14 @@ module.exports = class help extends Command
 			embed.setDescription(
 				`Aliases: ${help.aliases.join(", ")}\n`+
 				`Usage: ${help.usage}\n`+
-				`Permission level: ${help.requesite}`
+				`Permission level: ${help.requesite}\n` +
 				`${help.description}`
 			)
 			return message.channel.send(embed);
 		}
 		else if (this.client.aliases.get(args[0].toLowerCase()))
 		{
-			let help = this.client.commands.get(this.client.aliases.get(message.content.split("!")[1].split(" ")[1].toLowerCase())).help
+			let help = this.client.commands.get(this.client.aliases.get(args[0].toLowerCase()))
 			const embed = new this.Discord.MessageEmbed();
 			embed.setColor(0xF8FF16);
 			embed.setTitle(`**${help.name.charAt(0).toUpperCase() + help.name.slice(1)}**:`);
@@ -52,6 +52,7 @@ module.exports = class help extends Command
 			embed.setDescription(
 				`Aliases: ${help.aliases.join(", ")}\n`+
 				`Usage: ${help.usage}\n`+
+				`Permission level: ${help.requesite}\n` +
 				`${help.description}`
 			)
 			return message.channel.send(embed);
@@ -61,9 +62,9 @@ module.exports = class help extends Command
 			const embed = new this.Discord.MessageEmbed();
 			embed.setColor(0xF8FF16);
 			//embed.attachFiles(File)
-			embed.setAuthor(`You want help, here take it: (Page ${args[1]}/${helpcommand.length})`, 'https://images-ext-2.discordapp.net/external/rRDS9iQtoKUXGMUv4rXxDHYA0fGM69fS8EYoq9n8kOw/https/i.imgur.com/KbLY4go.png', '')
-			embed.setDescription(helpcommand[args[1] - 1].join("\n"))
-			embed.setFooter("For more information on a single command use nut!help [command name]");
+			embed.setAuthor(`You want help, here take it: (Page ${args[0]}/${helpcommand.length})`, 'https://images-ext-2.discordapp.net/external/rRDS9iQtoKUXGMUv4rXxDHYA0fGM69fS8EYoq9n8kOw/https/i.imgur.com/KbLY4go.png', '')
+			embed.setDescription(helpcommand[args[0] - 1].join("\n"))
+			embed.setFooter("For more information on a single command use help [command name]");
 			return message.channel.send(embed);
 		}
 		else
