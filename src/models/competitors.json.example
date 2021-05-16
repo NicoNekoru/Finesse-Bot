@@ -1,0 +1,8 @@
+{
+	"discordId" : {
+		"challongeName" : "CHALLONGE_USERNAME",
+		"tetrioName" : "TETRIO_USERNAME",
+		"challongeInfo" : "cUser",
+		"discordUser" : "USER.username"
+	}
+}

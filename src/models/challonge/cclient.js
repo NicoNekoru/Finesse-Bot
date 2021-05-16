@@ -10,6 +10,7 @@ class Challonge
 		this.auth = `${username}:${apiKey}`
 		this.host = "api.challonge.com"
 		this.href = `https://${username}:${apiKey}@${this.host}`
+		this.tournamentUrl = `https://challonge.com/${tournamentID}/`
 	}
 
 	pruneMap(map)
@@ -272,5 +273,4 @@ class Challonge
 		}
 	}
 }
-
 module.exports = Challonge
