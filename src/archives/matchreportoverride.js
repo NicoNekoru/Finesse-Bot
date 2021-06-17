@@ -23,7 +23,7 @@ module.exports = class matchReport extends Command
 		let cReportee = userList[reportee].challongeInfo.id
 		let game = this.cclient.matches.index()[gameNumber]
 		var scoreArr = score.split("-")
-		if (scoreArr.length != 2 || scoreArr.reduce((a,h)=>{return a==h}) || scoreArr.find(h=>typeof h=='string')) return message.reply("invalid score syntax, the correct syntax is [yourScore-opponentScore] and both scores have too be different!")
+		if (scoreArr.length != 2 || scoreArr.reduce((a,h)=>{return a==h}) || scoreArr.find(h=>isNaN(Number(h)))) return message.reply("invalid score syntax, the correct syntax is [yourScore-opponentScore] and both scores have to be different!")
 		const gameId = game.id
 		var player1, player2;
 

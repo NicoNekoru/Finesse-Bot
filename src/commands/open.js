@@ -8,18 +8,22 @@ module.exports = class matchReport extends Command
 			description : 'use this to open certain events in ift',
 			aliases : ["o"],
 			usage : "open [event name]",
-            requesite : 10
+			requesite : 0
 		})
 	}
 	async run(message, args) {
-        args = args.join(" ")
-        switch (true) {
-            case /match.?report/.test(args):
-                return message.client.matchReporting = true
-            case /bet/.test(args):
-                return message.client.betting = true
-            default:
-                break;
-        }
+		if (!message.member.hasPermission("BAN_MEMBERS")) return
+		args = args.join(" ")
+		if(/match.?report/.test(args))
+		{
+			message.reply("match reporting is open")
+			return message.client.matchReporting = true
+		}
+				
+		if(/bet/.test(args))
+		{
+			message.reply("betting is open")
+			return message.client.betting = true
+		}
 	}
 }

@@ -11,6 +11,7 @@ module.exports = async message => {
 	let args = message.content.replace(new RegExp(`^${prefix}`),"").split(" ").slice(1);
 	if (client.commands.has(command)) cmd = client.commands.get(command);
 	else if (client.aliases.has(command)) cmd = client.commands.get(client.aliases.get(command));
+	else return
 	if (Command.checkPermissions(message) < cmd.requesite) return
 	await cmd.run(message, args)
 }

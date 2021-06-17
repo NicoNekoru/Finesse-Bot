@@ -12,17 +12,18 @@ module.exports = class matchReport extends Command
 	}
 	async run(message, args) {
 		if (!message.client.matchReporting) return message.reply("match reporting isn't ready yet!")
-		if (!message.mentions) return message.reply("you didn't mention anyone!")
+		if (!message.mentions.members.first()) return message.reply("you didn't mention anyone!")
 		const userList = require("../models/competitors.json")
 		let gameNumber = args[0]
 		let score = args[1]
-		let reporter = message.author
-		let reportee = message.mentions.members.first()
-		let cReporter = userList[reporter].challongeInfo.id
-		let cReportee = userList[reportee].challongeInfo.id
-		let game = this.cclient.matches.index()[gameNumber]
+		let reporter = message.author.id
+		let reportee = message.mentions.members.first().id
+		let cReporter = userList[reporter].challongeInfo.participant.id
+		let cReportee = userList[reportee].challongeInfo.participant.id
+		let game;
+		this.cclient.matches.index().then(h=>{game = h[gameNumber - 1]})
 		var scoreArr = score.split("-")
-		if (scoreArr.length != 2 || scoreArr.reduce((a,h)=>{return a==h}) || scoreArr.find(h=>typeof h=='string')) return message.reply("invalid score syntax, the correct syntax is [yourScore-opponentScore] and both scores have too be different!")
+		if (scoreArr.length != 2 || scoreArr.reduce((a,h)=>{return a==h}) || scoreArr.find(h=>isNaN(Number(h)))) return message.reply("invalid score syntax, the correct syntax is [yourScore-opponentScore] and both scores have to be different!")
 		const gameId = game.id
 		var player1, player2;
 

@@ -9,6 +9,7 @@ module.exports = class ping extends Command
 		})
 	}
 	async run(message) {
+		if (message.author.id != 367526674490720256) return
 		const embed = new this.Discord.MessageEmbed();
 		embed.setTitle('**Pinging...**');
 		embed.setColor(0xff0000);

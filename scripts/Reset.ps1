@@ -1,6 +1,6 @@
 $PSScriptHome = [System.IO.FileInfo]::new($PSScriptRoot).Directory.FullName
 Set-Location $PSScriptRoot
-Powershell.exe -ExecutionPolicy Bypass -File .\Stop.ps1
+pwsh -ExecutionPolicy Bypass -File .\Stop.ps1
 Set-Location $PSScriptHome
 Write-Host "[INFO] " -ForegroundColor Yellow -NoNewline; Write-Host "Dumping logs...";
 try {
